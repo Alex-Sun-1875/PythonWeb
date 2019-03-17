@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import url
 
-from . import view
+from . import view, testdb, search
 
 """
 Django 的 path() 函数可以接收四个参数,分别是两个必选参数: route, view 和两个可选参数: kwargs, name
@@ -27,5 +28,11 @@ name: 用来反向获取 URL
 """
 
 urlpatterns = [
-    path('hello/', view.hello),
+    # path('hello/', view.hello),
+    url(r'admin', admin.site.urls),
+    url(r'^hello$', view.hello),
+    url(r'^testdb$', testdb.testdb),
+    url(r'^search-form$', search.search_form),
+    url(r'^search$', search.search),
+    url(r'^search-post', search.search_post),
 ]
